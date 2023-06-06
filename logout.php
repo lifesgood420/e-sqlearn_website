@@ -1,8 +1,7 @@
 <?php
-   include("config.php");
    include("session.php");
    
-   $db->query("UPDATE `admin` SET username=username, passcode=passcode, isOnline='inactive' WHERE username=$login_session");
+   $db->query("UPDATE `admin` SET `felh`=`felh`, `jelsz`=`jelsz`, `mail`=`mail`, `csatl`=0 WHERE `felh`='$login_session'");
 
    if(session_destroy()) {
       header("Location: index.html");

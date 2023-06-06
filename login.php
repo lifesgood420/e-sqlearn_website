@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 session_start();
+$error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
@@ -8,22 +9,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $myusername = mysqli_real_escape_string($db, $_POST['username']);
     $mypassword = mysqli_real_escape_string($db, $_POST['password']);
 
-    $result = $db->query("SELECT * FROM admin WHERE username = '$myusername' and passcode = MD5('$mypassword')");
-    $row = $result->fetch_array();
-    if ($row == FALSE) {
-        $error = "Your Login Name or Password is invalid";
+    if ($myusername == "" || $myusername == null || $mypassword == "" || $mypassword == null) {
+        $error = "All fields must be filled";
     } else {
-        $active = $row['active'];
+        $result = $db->query("SELECT * FROM admin WHERE felh = '$myusername' and jelsz = MD5('$mypassword')");
+        $row = $result->fetch_array(MYSQLI_NUM);
+        if ($row != null) {
+            if ($row[0] != $myusername || $row[1] != md5($mypassword)) {
+                $error = "Your Login Name or Password is invalid";
+            } else {
+                $count = mysqli_num_rows($result);
+                // If result matched $myusername and $mypassword, table row must be 1 row
 
-        $count = mysqli_num_rows($result);
-        // If result matched $myusername and $mypassword, table row must be 1 row
-
-        if ($count == 1) {
-            $_SESSION['username'] = $myusername;
-            $db->query("UPDATE `admin` SET username=username, passcode=passcode, isOnline='active' WHERE username=$myusername");
-            header("location: welcome.php");
-        } else {
-            $error = "Too many accounts";
+                if ($count == 1) {
+                    $_SESSION['username'] = $myusername;
+                    $db->query("UPDATE `admin` SET felh=felh, jelsz=jelsz, mail=mail, csatl=1 WHERE felh='$myusername'");
+                    header("location: welcome.php");
+                } else {
+                    $error = "Too many accounts";
+                }
+            }
         }
     }
 }
@@ -53,6 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body bgcolor="#FFFFFF">
+    <script>
+        window.onload = function() {
+            history.replaceState("", "", "/login.php");
+        }
+    </script>
 
     <div align="center">
         <div style="width:300px; border: solid 1px #333333; " align="left">

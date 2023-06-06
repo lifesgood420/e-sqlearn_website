@@ -3,19 +3,19 @@ include("config.php");
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form 
 
     $myusername = mysqli_real_escape_string($db, $_POST['username']);
     $mypassword = mysqli_real_escape_string($db, $_POST['password']);
+    $mymail = "'" .mysqli_real_escape_string($db, $_POST['email']). "'";
 
-    if ($myusername == "" || $myusername == null || $mypassword == "" || $mypassword == null) {
+    if ($myusername == "" || $myusername == null || $mypassword == "" || $mypassword == null || $mymail == "" || $mymail == null) {
         $error = "All fields must be filled";
     } else {
-        $result = $db->query("SELECT username FROM admin WHERE username = '$myusername'");
+        $result = $db->query("SELECT felh FROM admin WHERE felh = '$myusername'");
 
         $row = $result->fetch_array(MYSQLI_NUM);
-        if ($row[0] == null or $row[0] == "") {
-            if ($db->query("INSERT INTO admin (username, passcode, isOnline) VALUES ($myusername, MD5($mypassword), 'active')")) {
+        if ($row == null or $row[0] == "") {
+            if ($db->query("INSERT INTO admin (`felh`, `jelsz`, `mail`, `csatl`) VALUES ('$myusername', MD5('$mypassword'), $mymail, '1')")) {
                 $_SESSION['username'] = $myusername;
                 header("location: welcome.php");
             }
@@ -62,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div style="margin:30px">
 
                 <form action="" method="post">
-                    <label>Username :</label><input type="text" name="username" class="box" /><br /><br />
-                    <label>Password :</label><input type="password" name="password" class="box" /><br /><br />
+                    <label>Username :</label><input type="text" name="username" class="box" style="width: 100%"/><br /><br />
+                    <label>Email :</label><input type="email" name="email" class="box" style="width: 100%"/><br /><br />
+                    <label>Password :</label><input type="password" name="password" class="box" style="width: 100%" /><br /><br />
                     <input type="submit" value=" Submit " /><br />
                 </form>
 
