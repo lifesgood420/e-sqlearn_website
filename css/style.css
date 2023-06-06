@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(185, 136, 207);
+}
+
+#bg-pics{
+    background: url("/media/e-sqlearn.png");
+    background-repeat: repeat;
+    background-size: 5%;
+    width: inherit;
+    height: inherit;
+}
+
+.navbar{
+    background-color: #321B52;
+    color:white;
+    padding:0px;
+}
+
+.navbar-brand{
+    background: linear-gradient(to right, rgba(255, 255, 255), rgb(255, 255, 255, 0.7), rgb(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    border: none;
+    margin: 0px;
+    padding:12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #8448D9;
+    text-shadow: black 1px 1px;
+}
+
+.navbar-brand:hover{
+    color: #8448D9;
+    text-shadow: black 1px 1px;
+}
+
+.link-to-button{
+    position: relative;
+    right: 0px;
+    background-color: #8448D9;
+    text-decoration: none;
+    color: white;
+    padding:  15px;
+}
+
+.link-to-button:hover{
+    transition-duration: .05s;
+    border: solid 2px blueviolet;
+    background-color: #743fbe;
+}
+
+.link-to-button:active{
+    transition-duration: .05s;
+    border: solid 4px blueviolet;
+    background-color: #5f339c;
+}
+
+.navbar-toggler-custom{
+    background-color: #8448D9;
+    border:none;
+    padding:  15px;
+}
+
+.navbar-toggler-custom:hover{
+    background-color: #743fbe;
+    border:none;
+}
+
+.navbar-toggler-custom:active{
+    background-color: #5f339c;
+    border:none;
+}

@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
         <br>
-        <button onclick="document.location.replace('login.php');">Belépés</button>
+        <a href='login.php'>Belépés</button>
 
     </div>
 

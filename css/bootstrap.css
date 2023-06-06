@@ -125,7 +125,7 @@
 }
 
 [data-bs-theme=dark] {
-  color-scheme: dark;
+  --color-scheme: dark;
   --bs-body-color: #adb5bd;
   --bs-body-color-rgb: 173, 181, 189;
   --bs-body-bg: #212529;
@@ -2403,7 +2403,7 @@ textarea.form-control-lg {
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
-  print-color-adjust: exact;
+  --print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
