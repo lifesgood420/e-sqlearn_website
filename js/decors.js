@@ -1,13 +1,23 @@
 let butTog = false;
 
-function toggleButtons(){
+function toggleButtons() {
     butTog = !butTog;
-    if (butTog){
-        document.getElementById('regGomb').style.visibility = 'visible';
-        document.getElementById('logGomb').style.visibility = 'visible';
+    if (butTog) {
+        document.getElementById('dDownWind').style.visibility = 'visible';
     }
-    if (!butTog){
-        document.getElementById('regGomb').style.visibility = 'hidden';
-        document.getElementById('logGomb').style.visibility = 'hidden';
+    if (!butTog) {
+        document.getElementById('dDownWind').style.visibility = 'hidden';
     }
-}
+
+};
+
+//setInterval(function () { if (!document.getElementById('dDownWind').focus()) { document.getElementById('dDownWind').style.visibility = 'hidden' } }, 500);
+//console.log(document.getElementById('dDownWind').focus() + "asd");
+
+setInterval(function () {
+    if (document.getElementById("errorDiv").textContent == "") {
+        document.getElementById("errorDiv").style.visibility = "hidden";
+    } else {
+        document.getElementById("errorDiv").style.visibility = "visible";
+    }
+}, 500);

@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include_once("config.php");
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -9,10 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mymail = "'" .mysqli_real_escape_string($db, $_POST['email']). "'";
 
     if ($myusername == "" || $myusername == null || $mypassword == "" || $mypassword == null || $mymail == "" || $mymail == null) {
-        $error = "All fields must be filled";
+        $errBox = "All fields must be filled";
     } else {
         $result = $db->query("SELECT felh FROM admin WHERE felh = '$myusername'");
-
         $row = $result->fetch_array(MYSQLI_NUM);
         if ($row == null or $row[0] == "") {
             if ($db->query("INSERT INTO admin (`felh`, `jelsz`, `mail`, `csatl`) VALUES ('$myusername', MD5('$mypassword'), $mymail, '1')")) {
@@ -20,11 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: welcome.php");
             }
             if ($db->errno) {
-                $error = $db->errno;
+                $errBox = $db->errno;
             }
         }
         else{
-            $error = "Username already taken";
+            $errBox = "Username already taken";
         }
     }
 }
@@ -68,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="submit" value=" Submit " /><br />
                 </form>
 
-                <div style="font-size:11px; color:#cc0000; margin-top:10px"><?php echo @$error; ?></div>
+                <div style="font-size:11px; color:#cc0000; margin-top:10px"><?php echo @$errBox; ?><br><?php echo $result?></div>
 
             </div>
 

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
+#loginForm{
+    height: 65%;
+    width:100%;
+    margin-top: 50%;
+    padding-top: 10%;
+    background: #00000088;
+    border: solid 4px white;
+    border-radius: 4px;
+    color:white;
+}
+
+input[type="text"], input[type="password"]{
+    width:60%;
+    margin-bottom:5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #232323;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    color: white;
+    padding:3px;
+}
+
+input[type="submit"]{
+    width:40%;
+    margin-bottom: -50%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: #232323 solid 3px;
+    border-radius: 4px;
+    background-color: #232323;
+    color: white;
+    padding:3px;
+    outline: none;
+}
+
+input[type="submit"]:focus, input[type="submit"]:active, input[type="submit"]:hover{
+    border: #545454 solid 3px;
+}
+
+label{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+}
+
+#errorDiv{
+    margin-top: 20px;
+    width:100%;
+    padding:5px;
+    text-align: center;
+    background: #FFFFFF88;
+    border: solid 4px red;
+    border-radius: 4px;
+    color:red;
+    font-family: 'Ubuntu', sans-serif;
+}
